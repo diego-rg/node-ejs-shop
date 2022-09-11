@@ -1,16 +1,13 @@
 if (process.env.NODE_ENV !== "production") {
   require("dotenv").config();
 }
-
 const db = process.env.DB;
 
-const myslq = require("mysql2");
+const Sequelize = requrie("sequelize");
 
-const pool = myslq.createPool({
+const sequelize = new Sequelize("node-shop", "root", db, {
+  dialect: "mysql",
   host: "localhost",
-  user: "root",
-  database: "node-shop",
-  password: db,
 });
 
-module.exports = pool.promise();
+module.exports = sequelize;
