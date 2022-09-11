@@ -4,7 +4,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 
 const errorController = require("./controllers/error");
-const database = require("./util/database.js");
+const sequelize = require("./util/database.js");
 
 const app = express();
 
@@ -22,4 +22,13 @@ app.use(shopRoutes);
 
 app.use(errorController.get404);
 
-app.listen(3000);
+//sincroniza os models coa db
+sequelize
+  .sync()
+  .then((result) => {
+    // console.log(result);
+    app.listen(3000);
+  })
+  .catch((err) => {
+    console.log(err);
+  });
