@@ -3,7 +3,7 @@ if (process.env.NODE_ENV !== "production") {
 }
 const db = process.env.DB;
 
-const Sequelize = requrie("sequelize");
+const Sequelize = require("sequelize");
 
 const sequelize = new Sequelize("node-shop", "root", db, {
   dialect: "mysql",
